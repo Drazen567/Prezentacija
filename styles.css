@@ -1,134 +1,101 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #0a0e17;
+    background-color: #121212; 
+    color: #f1f1f1; 
 }
 
-
 header {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: white;
-    padding: 90px 0;
     text-align: center;
-    font-size: 2em;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    background-color: #1e1e1e; 
+    color: #4caf50; /* Highlight green */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 header h1 {
+    margin: 0;
     font-size: 2.5em;
 }
 
 header p {
-    margin-top: 10px;
     font-size: 1.2em;
 }
 
+section {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1c1c1c; 
+    border-radius: 10px;
+    max-width: 800px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
 
-nav ul {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 10px 0;
-    list-style: none;
+h2 {
+    font-size: 1.8em;
+    color: #4caf50; 
+    border-bottom: 2px solid #4caf50;
+    margin-bottom: 15px;
+}
+
+p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.highlight {
+    background-color: #fffae6;
+    font-weight: bold;
+    color: #ffcc00; 
+}
+
+.music-player {
+    background-color: #333333; 
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    margin-top: 25px;
+}
+
+.controls {
     display: flex;
     justify-content: center;
-    margin: 0;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    align-items: center;
+    gap: 20px;
 }
 
-nav ul li {
-    margin: 0 29px;
+.controls button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 2.5em;
+    color: #4caf50; 
+    transition: color 0.3s ease-in-out;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.7em;
-    position: relative;
-    transition: color 0.3s ease, transform 0.3s ease;
+.controls button:hover {
+    color: #45a049; 
 }
 
-nav ul li a:hover {
-    color: #ff6600;
-    transform: scale(1.1);
-}
-
-nav ul li a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 3px;
-    background: #ff6600;
-    transition: width 0.3s ease;
-    margin: 0 auto;
-}
-
-nav ul li a:hover::after {
+.tracker {
     width: 100%;
+    margin: 15px 0;
 }
 
-
-div {
-    color: white;
-    font-size: 1.19em;
-    margin: 100px auto;
-    padding: 29px;
-    max-width: 800px;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-div::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: var(--card-color, rgba(255, 255, 255, 0.3)); 
-    transform: rotate(45deg);
-    z-index: -1;
-    opacity: 0.4;
-    transition: opacity 0.5s ease;
-}
-
-div:hover {
-    transform: translateY(-10px); 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
-}
-
-div:hover::before {
-    opacity: 1; 
-}
-
-#anticka {
-    --card-color: rgba(255, 77, 77, 0.4); /* Crvena */
-}
-
-#savremena {
-    --card-color: rgba(77, 255, 77, 0.4); /* Zelena */
-}
-
-#zakljucak {
-    --card-color: rgba(77, 77, 255, 0.4); /* Plava */
-}
-
-
-footer {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: absolute;
+.tracker input[type="range"] {
     width: 100%;
-    bottom: 0;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    background-color: #666666; 
+    height: 6px;
+    border-radius: 3px;
+}
+
+.time-display {
+    font-size: 0.9em;
+    color: #888888; /* Light grey text */
+    display: flex;
+    justify-content: space-between;
 }
