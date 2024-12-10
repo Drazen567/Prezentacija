@@ -3,57 +3,132 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: 0,0,0;
+    background-color: #0a0e17;
+}
 
-}
+
 header {
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.05);
     color: white;
-    padding: 10px 0;
+    padding: 90px 0;
     text-align: center;
+    font-size: 2em;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
+
+header h1 {
+    font-size: 2.5em;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
 
 nav ul {
-    background-color: lightgrey;
-    padding: 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px 0;
     list-style: none;
     display: flex;
     justify-content: center;
+    margin: 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 nav ul li {
-    margin: 15 15px;
+    margin: 0 29px;
 }
 
 nav ul li a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.7em;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-section {
-    padding: 20px;
-    margin: 20px;
-    background-color: grey;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+nav ul li a:hover {
+    color: #ff6600;
+    transform: scale(1.1);
 }
 
-section img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 5px;
+nav ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #ff6600;
+    transition: width 0.3s ease;
+    margin: 0 auto;
 }
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+
+div {
+    color: white;
+    font-size: 1.19em;
+    margin: 100px auto;
+    padding: 29px;
+    max-width: 800px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+div::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--card-color, rgba(255, 255, 255, 0.3)); 
+    transform: rotate(45deg);
+    z-index: -1;
+    opacity: 0.4;
+    transition: opacity 0.5s ease;
+}
+
+div:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
+}
+
+div:hover::before {
+    opacity: 1; 
+}
+
+#anticka {
+    --card-color: rgba(255, 77, 77, 0.4); /* Crvena */
+}
+
+#savremena {
+    --card-color: rgba(77, 255, 77, 0.4); /* Zelena */
+}
+
+#zakljucak {
+    --card-color: rgba(77, 77, 255, 0.4); /* Plava */
+}
+
 
 footer {
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.05);
     color: white;
     text-align: center;
     padding: 10px 0;
     position: absolute;
     width: 100%;
     bottom: 0;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
 }
-
-
