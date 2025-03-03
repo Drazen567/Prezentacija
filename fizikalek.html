@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fizikalek.css">
+</head>
+<body>
+ 
+<div class="background"></div>
+
+ 
+<div class="notification" id="dd1">
+    <div class="notiglow"></div>
+    <div class="notiborderglow"></div>
+    <div class="notititle">prezentacija drazen</div>
+    <div class="notibody">Fizika prva dva casa,prezentovane vjv na prvom casu.</div>
+  </div>
+  
+  <script>
+    document.getElementById("dd1").addEventListener("click", function() {
+
+        let link = document.createElement("a");
+        link.href = "C:\Users\W10\Desktop\pudt"; 
+        link.download = "prezentacija drazen";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+</script>
+</body>
+</html>

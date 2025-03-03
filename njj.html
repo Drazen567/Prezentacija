@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="njj.css">
+</head>
+<body>
+ 
+<div class="background"></div>
+
+ 
+<div class="notification" id="downloadDiv">
+    <div class="notiglow"></div>
+    <div class="notiborderglow"></div>
+    <div class="notititle">Freiwilliges Soziales Jahr(fsj)</div>
+    <div class="notibody">prevod lekcije i nove rijeci</div>
+  </div>
+
+
+  <script>
+    document.getElementById("downloadDiv").addEventListener("click", function() {
+       
+        let link = document.createElement("a");
+        link.href = "tvoj-dokument.pdf";
+        link.download = "dokument.pdf"; 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
+
+
+
+</script>
+</body>
+</html>
