@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="hemija.css">
+</head>
+<body>
+ 
+<div class="background">
+
+ 
+<div class="notification" id="dd1">
+    <div class="notiglow"></div>
+    <div class="notiborderglow"></div>
+    <div class="notititle"></div>
+    <div class="notibody"></div>
+  </div>
+    </div>
+  <script>
+    window.onload = function() {
+    if (sessionStorage.getItem("auth") !== "true")
+window.location.href = "pass.html"
+    }
+    
+    document.getElementById("dd1").addEventListener("click", function() {
+
+        let link = document.createElement("a");
+        link.href = "" ; 
+        link.download = "";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+</script>
+</body>
+</html>

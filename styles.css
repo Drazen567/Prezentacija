@@ -24,9 +24,8 @@ header {
  border-radius: 35px;
  border: none;
     background-color: rgb(33, 235, 167);
-    margin-left: 1199px;
     position: relative;
-    bottom: 90px;
+    
     
 }
 header h1 {
@@ -38,7 +37,7 @@ header p {
     font-size: 1.2em;
 }
 
-/* Navigacija */
+
 nav ul {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 10px 0;

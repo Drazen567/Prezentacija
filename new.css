@@ -1,7 +1,11 @@
-body {
-  display: flex;
-  gap: 40px;
+.background{
+display: flex;
+gap: 40px;
+flex-wrap: wrap;
+background: white;
+
 }
+
 
 .box {
     position: relative;
@@ -50,7 +54,7 @@ body {
    
    .box:before,
    .box:after {
-    background: linear-gradient(315deg, #ffbc00, #ff0058)
+    background: linear-gradient(315deg, #cf08cf, #008cff)
    }
    
    .box span {
@@ -135,13 +139,7 @@ body {
     margin-bottom: 10px;
    }
  
-.background {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    background: radial-gradient(125% 125% at 50% 10%, #fff 40%, #63e 100%);
-    z-index: -10;
-  }
-  
+ 
+   
+
+

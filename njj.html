@@ -20,6 +20,12 @@
 
 
   <script>
+    
+    window.onload = function() {
+    if (sessionStorage.getItem("auth") !== "true")
+window.location.href = "pass.html"
+    }
+
     document.getElementById("downloadDiv").addEventListener("click", function() {
        
         let link = document.createElement("a");
