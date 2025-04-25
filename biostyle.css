@@ -1,0 +1,181 @@
+html, body {
+    height: 100%;
+    margin: 0; 
+    padding: 0;
+}
+/* Fiksirani header */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(31, 28, 31); /* Tamna pozadina */
+    color: white;
+    padding: 20px;
+    z-index: 10; /* Osigurava da header bude iznad ostalog sadržaja */
+}
+
+#header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header h1 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+#header p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+/* Container for rest of the page */
+#container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 100px; /* Da ne bi sadržaj bio pokriven headerom */
+    height: calc(100vh - 100px); /* Oduzima visinu headera */
+    width: 100%;
+}
+
+#container {
+    display: flex;
+    flex-direction: row; 
+    height: 100%;
+    width: 100%;
+}
+
+#meni {
+   
+    height: 100%;
+     width: 15%;
+  background-color: rgb(31, 28, 31);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.3s ease;
+}
+
+#tabla {
+   
+  
+    flex: 1;
+  background-color: #F6E7D7;
+  overflow: auto;
+}
+
+#t1,#t2,#lection{
+ height: 7%;
+width: 90%;
+
+padding: 5px;
+margin: 4px;
+background: #222020;
+border: white solid 2px;
+color: rgb(255, 255, 255);
+font-size: 1.35em;
+}
+
+#lection:hover, #t2:hover, #t1:hover {
+    background: #333;
+    transform: scale(1.05);  
+}
+
+#menu{
+
+color: white;
+position: fixed;
+top: 3%;
+left: 3%;
+font-size: 2em;
+cursor: pointer;
+
+}
+
+#meni.active {
+    
+    animation: fadein 0.5s forwards;
+}
+#meni.hidden{
+width: 0; /* Sakrij meni tako da ima širinu 0 */
+    padding: 0; /* Sakrij padding kad je skriven */
+    border: none; /* Opcionalno, sakrij granicu kad je meni skriven */
+}
+
+
+
+
+#header-content {
+    display: flex;
+    justify-content: flex-start; /* Poravnavanje sa leve strane */
+    align-items: center;
+}
+
+#header h1 {
+    font-size: 1.8em;
+    margin: 0;
+    margin-left: 50px; /* Pomera samo naslov udesno */
+}
+
+
+
+@keyframes fadein {
+
+0% {transform: translateX(-50%); opacity: 0;}
+
+100% {transform: translateX(0); opacity: 1;}
+
+
+}
+
+@keyframes fadeout {
+
+    from {transform: translateX(0); opacity: 1;}
+    
+    to {transform: translateX(-50); opacity: 0;}
+    }
+
+    @keyframes move{
+
+from {transform: translateX(0); opacity: 1;}
+to {transform: translateX(10%); opacity: 0;}
+
+
+
+
+    }
+    h1 {
+        font-size: 40px; /* Povećajte veličinu h1 naslova */
+        color: #ececec;;
+    }
+    
+    h2 {
+        font-size: 28px; /* Povećajte veličinu h2 naslova */
+        color: #4B3B2A;
+    }
+    
+    h3 {
+        color: #4B3B2A;
+        font-size: 24px; /* Povećajte veličinu h3 naslova */
+    }
+    
+    /* Povećajte veličinu paragrafa */
+    p {
+        font-size: 28px; /* Povećajte veličinu teksta u paragrafima */
+    }
+
+    #p{
+
+
+font-size: 1.8em;
+
+
+    }
+    #po {
+        font-size: 2.8em;
+        color: #4B3B2A;
+    }
