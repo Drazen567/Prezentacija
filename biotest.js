@@ -1,3 +1,16 @@
+ window.onload = function(){
+if(localStorage.getItem("IsAdmin") !== "true"){
+
+  window.location = "https://drazen567.github.io/Prezentacija/bioindex.html"
+  
+
+}
+  
+}
+
+
+
+
 let currentPlayer = 0;
 let players = [];
 
@@ -66,23 +79,23 @@ const questions = [
 
 let currentQuestionIndex = 0;
 
-// Funkcija za prikazivanje odgovora
+
 function showAnswer() {
   const answerDiv = document.getElementById("answer");
-  answerDiv.style.display = "block"; // Prikazivanje odgovora
+  answerDiv.style.display = "block"; 
 }
 
-// Funkcija za prelazak na sledeće pitanje
+
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex >= questions.length) {
-    currentQuestionIndex = 0; // Ako su pitanja prošla, vrati se na početak
+    currentQuestionIndex = 0;
   }
   renderQuestion();
-  document.getElementById("answer").style.display = "none"; // Sakrij odgovor
+  document.getElementById("answer").style.display = "none"; 
 }
 
-// Funkcija za prikazivanje trenutnog pitanja
+
 function renderQuestion() {
   const questionDiv = document.getElementById("question");
   const questionText = questions[currentQuestionIndex].question;
@@ -93,12 +106,12 @@ function renderQuestion() {
   answerDiv.innerHTML = `Odgovor: ${answerText}`;
 }
 
-// Dodavanje igrača
+
 function addPlayer() {
   const playerNameInput = document.getElementById("player-name");
   const playerName = playerNameInput.value.trim();
   
-  if (playerName === "") return; // Ako ime nije uneseno, izlazi iz funkcije
+  if (playerName === "") return; 
 
   const player = {
     name: playerName,
@@ -106,15 +119,15 @@ function addPlayer() {
   };
 
   players.push(player);
-  playerNameInput.value = ""; // Čisti unos nakon dodavanja
+  playerNameInput.value = ""; 
 
   renderPlayers();
 }
 
-// Prikazivanje liste igrača
+
 function renderPlayers() {
   const playersContainer = document.getElementById("players-container");
-  playersContainer.innerHTML = ""; // Čisti trenutnu listu
+  playersContainer.innerHTML = "";
 
   players.forEach((player, index) => {
     const playerDiv = document.createElement("div");
@@ -125,11 +138,11 @@ function renderPlayers() {
   });
 }
 
-// Dodavanje poena igraču
+
 function addPoint(playerIndex) {
-  players[playerIndex].points += 1; // Povećava poene
-  renderPlayers(); // Ponovno renderuje listu igrača
+  players[playerIndex].points += 1; 
+  renderPlayers(); 
 }
 
-// Inicijalno renderovanje pitanja
+
 renderQuestion();
