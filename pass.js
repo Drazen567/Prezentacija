@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     
    console.log("DOM fully loaded and parsed");
+
     const admin = {
-    username: "admin",
-    password: "dev"
+    username: "drazz",
+    password: "razz312"
 
     }
 
@@ -214,5 +215,16 @@ document.getElementById("fcont").style.display = "none";
     
 
 })
+console.log(users)
 
-});
+
+
+
+
+let ruser = document.getElementById("ruser").addEventListener("click",function(){
+document.getElementById("removeusermodal").style.display = "flex";
+console.log("kliknuto")
+
+})
+
+})

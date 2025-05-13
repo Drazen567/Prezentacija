@@ -5,10 +5,5 @@ window.location.href = "pass.html"
     
     document.getElementById("dd1").addEventListener("click", function() {
 
-        let link = document.createElement("a");
-        link.href = "" ; 
-        link.download = "";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+       window.location.href = "bioindex.html"
     });

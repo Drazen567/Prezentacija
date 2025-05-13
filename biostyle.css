@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0; 
     padding: 0;
+    scrollbar-width: none;
 }
 /* Fiksirani header */
 #header {
@@ -31,21 +32,19 @@ html, body {
     margin: 0;
 }
 
-/* Container for rest of the page */
+
 #container {
     display: flex;
     flex-direction: row;
-    padding-top: 100px; /* Da ne bi sadržaj bio pokriven headerom */
-    height: calc(100vh - 100px); /* Oduzima visinu headera */
-    width: 100%;
-}
-
-#container {
+    padding-top: 34px; 
+    
     display: flex;
     flex-direction: row; 
     height: 100%;
     width: 100%;
 }
+
+
 
 #meni {
    
@@ -65,7 +64,8 @@ html, body {
   
     flex: 1;
   background-color: #F6E7D7;
-  overflow: auto;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 #t1,#t2,#lection{
