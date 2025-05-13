@@ -7,7 +7,15 @@ document.addEventListener("DOMContentLoaded", function() {
     password: "razz312"
 
     }
+    const bio = {
+ username: "biologija",
+    password: "bio123"
 
+    }
+    const panic = {
+username: "mihajloP",
+    password: "panic123"
+    }
      let users = JSON.parse(localStorage.getItem("users")) || []
 
     window.onload = function() {
@@ -82,7 +90,7 @@ let loginf = document.getElementById("lf").addEventListener("submit",function(ev
   
      let userexist = users.find(user => user.username === name && user.password === pass)
   
-  if(userexist){
+  if(userexist || name == bio.username && pass == bio.password || name == panic.username && pass == panic.password ){
   
   alert("user postoi")
   localStorage.setItem("auth",true)
