@@ -1,181 +1,157 @@
+/* RESET i OSNOVNI STILOVI */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
 html, body {
-    height: 100%;
-    margin: 0; 
-    padding: 0;
-    scrollbar-width: none;
+  height: 100%;
+  background-color: #f4f5f7;
+  color: #2a2e35;
+  line-height: 1.6;
 }
-/* Fiksirani header */
+
+/* HEADER */
 #header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgb(31, 28, 31); /* Tamna pozadina */
-    color: white;
-    padding: 20px;
-    z-index: 10; /* Osigurava da header bude iznad ostalog sadržaja */
-}
-
-#header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 32px;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
 }
 
 #header h1 {
-    font-size: 1.8em;
-    margin: 0;
+  font-size: 24px;
+  color: #1a73e8;
 }
 
-#header p {
-    font-size: 1.2em;
-    margin: 0;
-}
-
-
+/* KONTEJNER */
 #container {
-    display: flex;
-    flex-direction: row;
-    padding-top: 34px; 
-    
-    display: flex;
-    flex-direction: row; 
-    height: 100%;
-    width: 100%;
+  display: flex;
+  padding-top: 80px;
+  height: 100%;
 }
 
-
-
+/* MENI */
 #meni {
-   
-    height: 100%;
-     width: 15%;
-  background-color: rgb(31, 28, 31);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    transition: width 0.3s ease;
+  width: 240px;
+  background-color: #f9fafb;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
+#meni button {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#meni button:hover {
+  background-color: #1a73e8;
+  color: white;
+  border-color: #1a73e8;
+  transform: scale(1.02);
+}
+
+/* MAIN CONTENT */
 #tabla {
-   
-  
-    flex: 1;
-  background-color: #F6E7D7;
-  overflow: scroll;
-  scrollbar-width: none;
+  flex: 1;
+  padding: 40px;
+  background-color: #ffffff;
+  overflow-y: auto;
 }
 
-#t1,#t2,#lection{
- height: 7%;
-width: 90%;
-
-padding: 5px;
-margin: 4px;
-background: #222020;
-border: white solid 2px;
-color: rgb(255, 255, 255);
-font-size: 1.35em;
+h1 {
+  font-size: 36px;
+  color: #1a73e8;
+  margin-bottom: 24px;
+  padding-left: 20px;
 }
 
-#lection:hover, #t2:hover, #t1:hover {
-    background: #333;
-    transform: scale(1.05);  
+h2 {
+  font-size: 28px;
+  color: #0d9488;
+  margin: 32px 0 16px;
 }
 
-#menu{
-
-color: white;
-position: fixed;
-top: 3%;
-left: 3%;
-font-size: 2em;
-cursor: pointer;
-
+h3 {
+  font-size: 22px;
+  color: #059669;
+  margin-top: 24px;
 }
 
-#meni.active {
-    
-    animation: fadein 0.5s forwards;
-}
-#meni.hidden{
-width: 0; /* Sakrij meni tako da ima širinu 0 */
-    padding: 0; /* Sakrij padding kad je skriven */
-    border: none; /* Opcionalno, sakrij granicu kad je meni skriven */
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #374151;
 }
 
-
-
-
-#header-content {
-    display: flex;
-    justify-content: flex-start; /* Poravnavanje sa leve strane */
-    align-items: center;
+/* LISTE */
+ul {
+  margin-left: 20px;
+  padding-left: 20px;
 }
 
-#header h1 {
-    font-size: 1.8em;
-    margin: 0;
-    margin-left: 50px; /* Pomera samo naslov udesno */
+li {
+  margin-bottom: 10px;
 }
 
-
-
-@keyframes fadein {
-
-0% {transform: translateX(-50%); opacity: 0;}
-
-100% {transform: translateX(0); opacity: 1;}
-
-
+/* SLIKE */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-@keyframes fadeout {
+/* IKONE */
+.material-icons-outlined {
+  font-size: 20px;
+}
 
-    from {transform: translateX(0); opacity: 1;}
-    
-    to {transform: translateX(-50); opacity: 0;}
-    }
+/* MENU IKONA */
+#menu {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  font-size: 28px;
+  color: #111;
+  cursor: pointer;
+}
 
-    @keyframes move{
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;
+  }
 
-from {transform: translateX(0); opacity: 1;}
-to {transform: translateX(10%); opacity: 0;}
+  #meni {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
 
-
-
-
-    }
-    h1 {
-        font-size: 40px; /* Povećajte veličinu h1 naslova */
-        color: #ececec;;
-    }
-    
-    h2 {
-        font-size: 28px; /* Povećajte veličinu h2 naslova */
-        color: #4B3B2A;
-    }
-    
-    h3 {
-        color: #4B3B2A;
-        font-size: 24px; /* Povećajte veličinu h3 naslova */
-    }
-    
-    /* Povećajte veličinu paragrafa */
-    p {
-        font-size: 28px; /* Povećajte veličinu teksta u paragrafima */
-    }
-
-    #p{
-
-
-font-size: 1.8em;
-
-
-    }
-    #po {
-        font-size: 2.8em;
-        color: #4B3B2A;
-    }
+  #tabla {
+    padding: 20px;
+  }
+}
