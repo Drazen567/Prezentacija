@@ -7,7 +7,16 @@ document.addEventListener("DOMContentLoaded", function() {
     password: "razz312"
 
     }
+    const bio = {
+ username: "biologija",
+    password: "bio123"
 
+    }
+    
+    const panic = {
+username: "mihajloP",
+    password: "panic123"
+    }
      let users = JSON.parse(localStorage.getItem("users")) || []
 
     window.onload = function() {
@@ -82,7 +91,7 @@ let loginf = document.getElementById("lf").addEventListener("submit",function(ev
   
      let userexist = users.find(user => user.username === name && user.password === pass)
   
-  if(userexist){
+  if(userexist || name == panic.username && pass == panic.password ){
   
   alert("user postoi")
   localStorage.setItem("auth",true)
@@ -90,7 +99,7 @@ let loginf = document.getElementById("lf").addEventListener("submit",function(ev
   window.location = "new.html"
   return
   }
-  if(name === admin.username && pass === admin.password){
+  if(name === admin.username && pass === admin.password || name === bio.username && pass === bio.password){
   
       localStorage.setItem("IsAdmin",true)
   
@@ -228,3 +237,6 @@ console.log("kliknuto")
 })
 
 })
+
+
+
