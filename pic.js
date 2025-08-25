@@ -1,3 +1,7 @@
+let pic1 = document.getElementById('pic1');
+let pic2 = document.getElementById('pic2'); 
+let pic3 = document.getElementById('pic3');
+
 dpic1.onclick = function() {
   let link = document.createElement('a');
   link.href = 'viber_image_2025-08-25_23-10-50-371.jpg';
@@ -19,4 +23,5 @@ dpic3.onclick = function() {
   link.click();
    console.log("downloading...")
 };
+
 
