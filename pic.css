@@ -1,8 +1,21 @@
-.parent {
-    width:fit-content;
-  padding: 20px;
-  perspective: 1000px;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+
+.parent, .card {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .parent, .card {
+    max-width: 98vw;
+    width: 98vw;
+  }}
 
 .card {
   padding-top: 50px;
@@ -26,7 +39,7 @@
 .content-box {
     display: flex;
     flex-direction: column;
-    align-items: center; /* centriraj sve unutar content-box */
+    align-items: center; 
     padding: 60px 25px 25px 25px;
     background: rgba(4, 193, 250, 0.732);
     transition: all 0.5s ease-in-out;
@@ -114,11 +127,13 @@
     height: 200px;
     width: 400px;
  }
- #sadrzaj {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-
- }
+#sadrzaj {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 100vw;
+}
