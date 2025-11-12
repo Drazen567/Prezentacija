@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const admin = {
     username: "drazz",
-    password: "razz312"
+    password: "drazz312"
 
     }
     const bio = {
