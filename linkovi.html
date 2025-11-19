@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PREZENTACIJA drazz</title>
+
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+  body {
+    margin: 0;
+    background: #0A0F2C;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  .hero {
+    padding: 130px 20px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .hero p {
+    font-size: 22px;
+    max-width: 650px;
+    margin: 0 auto;
+    opacity: 0.85;
+  }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 80px 20px;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 290px;
+    background: #ffffff;
+    color: #0A0F2C;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(255,255,255,0.18);
+    transition: transform 0.35s;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(255,255,255,0.28);
+  }
+
+  footer {
+    text-align: center;
+    padding: 70px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+
+<section class="hero">
+  <h1><span id="typed"></span></h1>
+  <p data-aos="fade-up" data-aos-duration="1100">
+    LINKOVI
+  </p>
+</section>
+
+
+<div class="cards">
+  <div class="card" data-aos="fade-up" data-aos-delay="0" onclick="window.open('https://www.youtube.com/watch?v=484zNF-MpQo&embeds_referring_euri=https%3A%2F%2Fchatgpt.com%2F&source_ve_path=MjM4NTE')">
+    <h2 class="animate__animated animate__pulse animate__delay-1s">Zlatni petao</h2>
+    <p>Opera u tri čina (plus prolog i epilog) komponovana 1907., premijerno izvedena 1909. nakon Rimskij‑Korsakovljeve smrti</p>
+  </div>
+
+  <div class="card" data-aos="fade-up" data-aos-delay="200" onclick="window.open('https://www.youtube.com/watch?v=aYAJopwEYv8')">
+    <h2 class="animate__animated animate__pulse animate__delay-2s" >Let bumbara</h2>
+    <p>Muzika treba da prikaže brzo, „haotično i stalno mijenjajuće” letenje bumbara</p>
+  </div>
+
+  <div class="card" data-aos="fade-up" data-aos-delay="400" onclick="window.open('https://www.youtube.com/watch?v=zY4w4_W30aQ')" >
+    <h2 class="animate__animated animate__pulse animate__delay-3s">Šeherezada</h2>
+    <p>Rimskij‑Korsakov je želio da slušalac ne veže muziku striktno za jednu radnju, već da doživi osjećaj orijentalne pripovijesti i bogate atmosfere.</p>
+  </div>
+</div>
+
+<footer data-aos="zoom-in" data-aos-duration="1300">
+ 
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+
+  new Typed("#typed", {
+    strings: ["Nikolaj Rimski Korsakov"],
+    typeSpeed: 60,
+    backSpeed: 35,
+    backDelay: 1200,
+    loop: true
+  });
+
+ 
+  AOS.init({
+    duration: 950,
+    easing: "ease-in-out",
+    offset: 110,
+    once: true
+  });
+</script>
+
+</body>
+</html>
