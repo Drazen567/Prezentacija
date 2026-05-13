@@ -36,7 +36,7 @@
 
     </div>
 
-    <h1>Crvena Jabuka</h1>
+    <h1 id="pr">Crvena Jabuka</h1>
 
     <p>
       Prezentacija posvećena jednom od najpoznatijih bendova ex-Yu pop rock scene.
@@ -44,7 +44,7 @@
     </p>
 
     <!-- DOWNLOAD -->
-    <a href="prezentacija.pptx" download>
+    <a href="Crvena-Jabuka-40-Godina-Ljubavi-i-Nezaboravnih-Nota2.pdf" download>
       <button class="download-btn">
         <i class="fa-solid fa-download"></i>
         Preuzmi prezentaciju
@@ -63,7 +63,14 @@
   </audio>
 
   <script>
-    let 
+    let pr = document.getElementById("pr")
+ 
+
+pr.onclick = function(){
+
+    window.open("cjab2.html");
+
+}
     const music = document.getElementById("bgMusic");
 
     function playMusic(){
