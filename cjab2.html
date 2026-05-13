@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crvena Jabuka - Pjesme</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#343746 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#44475a 0%,transparent 35%),
+    #1e1f29;
+
+    color:white;
+}
+
+.container{
+
+    width:90%;
+    max-width:1200px;
+    height:85vh;
+
+    background:#282a36;
+
+    border-radius:28px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,0.45),
+    0 0 80px rgba(189,147,249,0.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.glow{
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    background:#ff79c6;
+
+    border-radius:50%;
+
+    filter:blur(180px);
+
+    opacity:0.12;
+
+    top:-120px;
+    right:-100px;
+}
+
+h1{
+    font-size:4rem;
+    margin-bottom:15px;
+
+    color:#f8f8f2;
+}
+
+.subtitle{
+    color:#b8b8c9;
+    margin-bottom:55px;
+
+    font-size:1.1rem;
+}
+
+.buttons{
+    display:flex;
+    gap:30px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+}
+
+.song-btn{
+
+    width:250px;
+    height:130px;
+
+    border:none;
+    border-radius:22px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:1.1rem;
+    font-weight:600;
+
+    transition:0.35s;
+
+    background:#343746;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.35);
+}
+
+.song-btn:hover{
+
+    transform:translateY(-8px) scale(1.03);
+
+}
+
+.song-btn i{
+
+    display:block;
+
+    font-size:2rem;
+
+    margin-bottom:12px;
+}
+
+.main-song{
+
+    background:linear-gradient(135deg,#ff5555,#ff79c6);
+
+    box-shadow:
+    0 0 30px rgba(255,85,85,0.35),
+    0 0 60px rgba(255,121,198,0.2);
+}
+
+.main-song:hover{
+
+    box-shadow:
+    0 0 40px rgba(255,85,85,0.55),
+    0 0 80px rgba(255,121,198,0.35);
+}
+
+.secondary-song{
+
+    background:#3a3d4f;
+}
+
+.secondary-song:hover{
+
+    background:#4b4f66;
+}
+
+.footer{
+
+    position:absolute;
+
+    bottom:20px;
+
+    color:#6c6f93;
+
+    font-size:0.9rem;
+}
+
+@media(max-width:900px){
+
+    h1{
+        font-size:2.7rem;
+        text-align:center;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="glow"></div>
+
+    <h1>Crvena Jabuka</h1>
+
+    <p class="subtitle">
+        Odaberi jednu od najpoznatijih pjesama
+    </p>
+
+    <div class="buttons">
+
+        <!-- GRADE MOJ -->
+        <button class="song-btn secondary-song"
+        onclick="window.open('https://www.youtube.com/watch?v=YOUR_LINK_1')">
+
+            <i class="fa-solid fa-city"></i>
+
+            Grade moj
+
+        </button>
+
+        <!-- TUGO NESRECO -->
+        <button class="song-btn main-song"
+        onclick="window.open('https://www.youtube.com/watch?v=YOUR_LINK_2')">
+
+            <i class="fa-solid fa-heart-crack"></i>
+
+            Tugo nesrećo
+
+        </button>
+
+        <!-- SRCA DO SRCA -->
+        <button class="song-btn secondary-song"
+        onclick="window.open('https://www.youtube.com/watch?v=YOUR_LINK_3')">
+
+            <i class="fa-solid fa-heart"></i>
+
+            Ima nešto od srca do srca
+
+        </button>
+
+    </div>
+
+   
+
+</div>
+
+</body>
+</html>

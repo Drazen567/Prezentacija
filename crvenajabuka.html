@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crvena Jabuka - Prezentacija</title>
+
+  <!-- FONT -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cjabuka.css">
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="glow"></div>
+
+    <div class="corner-buttons">
+
+      <!-- PLAY -->
+      <button class="icon-btn music-on" onclick="playMusic()">
+        <i class="fa-solid fa-music"></i>
+      </button>
+
+      <!-- STOP -->
+      <button class="icon-btn music-off" onclick="stopMusic()">
+        <i class="fa-solid fa-volume-xmark"></i>
+      </button>
+
+    </div>
+
+    <h1>Crvena Jabuka</h1>
+
+    <p>
+      Prezentacija posvećena jednom od najpoznatijih bendova ex-Yu pop rock scene.
+      Emocija, nostalgija i bezvremenski hitovi objedinjeni u modernom prikazu.
+    </p>
+
+    <!-- DOWNLOAD -->
+    <a href="prezentacija.pptx" download>
+      <button class="download-btn">
+        <i class="fa-solid fa-download"></i>
+        Preuzmi prezentaciju
+      </button>
+    </a>
+
+    <div class="footer">
+      Tugo, nesrećo • Crvena Jabuka
+    </div>
+
+  </div>
+
+  <!-- AUDIO -->
+  <audio id="bgMusic" loop>
+    <source src="cjab.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    let 
+    const music = document.getElementById("bgMusic");
+
+    function playMusic(){
+      music.play();
+    }
+
+    function stopMusic(){
+      music.pause();
+      music.currentTime = 0;
+    }
+
+  </script>
+
+</body>
+</html>
